@@ -93,6 +93,11 @@ _A mostly reasonable collection of technical software development interview ques
   //Write your program here
   ```
 
+  function removeDuplicates(data){
+  return [...new Set(data)]
+  }
+  console.log(removeDuplicates(array));
+
 <a name="array--largest-difference"></a><a name="1.4"></a>
 
 - **[1.4](#array--largest-difference) Given an array of integers, find the largest difference between two elements such that the element of lesser value must come before the greater element**
@@ -104,6 +109,21 @@ _A mostly reasonable collection of technical software development interview ques
 
   //Write your program here
   ```
+
+  findLargestDifference(arr)
+  {
+  var max_diff = arr[1] - arr[0];
+  var i, j;
+  for (i = 0; i < arr.length; i++)  
+   {
+  for (j = i + 1; j < arr.length; j++)  
+   {
+  if (arr[j] - arr[i] > max_diff)
+  max_diff = arr[j] - arr[i];
+  }
+  }
+  console.log(max_diff);
+  }
 
 <a name="array--product-other-than-itself"></a><a name="1.5"></a>
 
@@ -117,6 +137,15 @@ _A mostly reasonable collection of technical software development interview ques
   //Write your program here
   ```
 
+  let output = [];
+  values.forEach((element, index, array) => {
+  let removed_element = values.splice(index, 1)
+  output.push(values.reduce((a, b) => a \* b));
+  values.unshift(removed_element);
+  });
+
+console.log(output);
+
 <a name="array--intersection"></a><a name="1.6"></a>
 
 - **[1.6](#array--intersection) Find the intersection of two arrays. An intersection would be the common elements that exists within both arrays. In this case, these elements should be unique!**
@@ -124,10 +153,13 @@ _A mostly reasonable collection of technical software development interview ques
   var firstArray = [2, 2, 4, 1];
   var secondArray = [1, 2, 0, 2];
   ```
-
-//Write your program here
+  intersect(firstArray, secondArray);
+  //Write your program here
 
 ````
+function intersect(a, b) {
+      return [...new Set(a)].filter(x => new Set(b).has(x));
+}
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -141,6 +173,10 @@ var string = "Welcome to this Javascript Guide!";
 //Write your program here
 ````
 
+function wordsReverser(string){
+return string.split('').reverse().join('');
+}
+console.log(wordsReverser(string));
 <a name="string--anagram"></a><a name="2.2"></a>
 
 - **[2.2](#string--anagram) Given two strings, return true if they are anagrams of one another**
@@ -153,6 +189,20 @@ var string = "Welcome to this Javascript Guide!";
   //Write your program here
   ```
 
+  var ana = isAnagram(firstWord,secondWord);
+  if(ana==true)
+  {
+  console.log(firstWord+"is an anagram of"+seconWord)
+  }
+  function isAnagram(firstWord,secondWord){
+  fWord=firstWord.sort();
+  sWord=secondWord.sort();
+  for (int i = 0; i < n1; i++) {
+  if (fWord[i] != sWord[i])
+  return false;
+  }
+  return true;
+  }
   <a name="string--palindrome"></a><a name="2.3"></a>
 
 - **[2.3](#string--palindrome) Check if a given string is a palindrome**
@@ -165,7 +215,19 @@ var string = "Welcome to this Javascript Guide!";
   //Write your program here
   ```
 
-<a name="string--isIsomorphic"></a><a name="2.3"></a>
+  function isPalimdrome(string)
+  {
+  function wordsReverser(string){
+  return string.split('').reverse().join('');
+  }
+  new_string = wordReverser(string);
+  if(new_string==string)
+  {
+  return true;
+  }
+  return false;
+  }
+  <a name="string--isIsomorphic"></a><a name="2.3"></a>
 
 - **[2.4](#string--palindrome) Check if a given string is a isomorphic**
 
@@ -185,6 +247,37 @@ var string = "Welcome to this Javascript Guide!";
 
     //Write your program here
   ```
+
+  function isIsomorphic(s, t) {
+  var result = true;
+
+      if (s.length === t.length) {
+          var hash1 = [];
+          var hash2 = [];
+
+          for (var i=0; i<s.length; i++) {
+              var char1 = s[i];
+              var char2 = t[i];
+
+              // If the character's last seen position doesn't match up, then not isomorphic.
+              if (hash1[char1] !== hash2[char2]) {
+                  result = false;
+                  break;
+              }
+              else {
+                  // Store the last seen position of this character.
+                  hash1[char1] = i;
+                  hash2[char2] = i;
+              }
+          }
+      }
+      else {
+          result = false;
+      }
+
+      return result;
+
+  };
 
 **[⬆ back to top](#table-of-contents)**
 
